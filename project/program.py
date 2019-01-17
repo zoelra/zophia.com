@@ -35,6 +35,7 @@ def landing_page():
     cur = g.db.execute('select * from posts')
     posts = [dict(title=row[0], post=row[1]) for row in cur.fetchall()]
     g.db.close()
+
     return render_template('visitor.html', posts=posts)
 
 
@@ -42,9 +43,9 @@ def landing_page():
 def login():
     error = None
     if request.method == 'POST':
-        if sha256(request.form['username'].encode('utf-8')).hexdigest()\
-                != app.config['USERNAME']\
-                or sha256(request.form['password'].encode('utf-8')).hexdigest()\
+        if sha256(request.form['username'].encode('utf-8')).hexdigest() \
+                != app.config['USERNAME'] \
+                or sha256(request.form['password'].encode('utf-8')).hexdigest() \
                 != app.config['PASSWORD']:
             error = 'Invalid Credentials. Please try again.'
         else:
@@ -87,6 +88,17 @@ def add():
         g.db.close()
         flash('New entry was successfully posted!')
         return redirect(url_for('backend'))
+
+
+@app.route('/delete/<string:title>/')
+@login_required
+def delete_entry(title):
+    g.db = connect_db()
+    g.db.execute('DELETE FROM posts WHERE title=:title', {"title": title})
+    g.db.commit()
+    g.db.close()
+    flash('The post was deleted.')
+    return redirect(url_for('backend'))
 
 
 @app.route('/logout')
