@@ -61,3 +61,5 @@ GitHub.sublime-settings
 *.pyc
 *.xml
 *.iml
+*.cpython-36
+*.cpython-36.pyc_
