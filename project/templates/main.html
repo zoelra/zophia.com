@@ -1,0 +1,10 @@
+{% extends "template.html" %}
+{% block content %}
+    <h2>Welcome to Zophia.com!</h2>
+    <h3>Posts:</h3>
+    {% for p in posts %}
+        <strong>Title:</strong> {{ p.title }} <br/>
+        <strong>Post:</strong> {{ p.post }} <br/>
+        <br/>
+    {% endfor %}
+{% endblock %}
