@@ -1,12 +1,18 @@
-import sqlite3
+from program import db
 
-with sqlite3.connect("blog.db") as connection:
-	c = connection.cursor()
 
-	c.execute("""CREATE TABLE posts (title TEXT, post TEXT)""")
+class Post(db.Model):
+    __tablename__ = 'posts'
 
-	c.execute('INSERT INTO posts VALUES("First Blog Post", "Thank you for visiting my new website.\
-		It is still in development and will be changing continuously.\
-		Please stay tuned for new updates and functionality. Cheers!")')
-	
-	
+    post_id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String, nullable=False)
+    post = db.Column(db.String, nullable=False)
+    post_date = db.Column(db.Date, nullable=False)
+
+    def __init__(self, title, post, post_date):
+        self.title = title
+        self.post = post
+        self.post_date = post_date
+
+    def __repr__(self):
+        return '<title {0}'.format(self.title)
