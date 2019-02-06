@@ -1,0 +1,1 @@
+The goal of this project is to create a personal website using Flask, Python, CSS, HTML, SQLAlchemy, and Heroku. I want to demonstrate my programming skills by deploying a live blog site by 1 March 2019.
