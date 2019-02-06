@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, session, flash, redirect, url
 from functools import wraps
 from hashlib import sha256
 from flask_sqlalchemy import SQLAlchemy
+import os
 
 DATABASE = 'zophia_blog.db'
 USERNAME = 'fe7d80792aba17b08e301d3910bdef10e755086b2d03fa3ab99064a7ceff03cf'
@@ -9,8 +10,9 @@ PASSWORD = '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918'
 SECRET_KEY = """b'|\xa9={5YR\x02{\x00\x97\xda\x16\x11L\x05\xbe\x1b\xde\xe9M\xbe\x8c\x89'"""
 
 app = Flask(__name__)
-app.config.from_object(__name__)
-db = SQLAlchemy()
+app.config.from_object(os.environ['APP_SETTINGS'])
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
 
 
 def login_required(test):
