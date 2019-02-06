@@ -1,5 +1,0 @@
-flask
-SQLAlchemy
-psycopg2
-gunicorn
-Jinja2
