@@ -8,7 +8,7 @@ itsdangerous==0.24
 Jinja2==2.8
 Mako==1.0.4
 MarkupSafe==0.23
-psycopg2==2.7.1
+psycopg2==2.7.7
 python-editor==0.5
 SQLAlchemy==1.0.12
 Werkzeug==0.11.4
