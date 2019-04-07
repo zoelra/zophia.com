@@ -47,22 +47,18 @@ def login():
     return render_template('login.html', error=error)
 
 
-@app.route('/main')
-def main():
-    posts = Post.query.all()
-    return render_template('visitor.html', posts=posts)
-
-
 @app.route('/visitor_articles')
 def posts():
     articles = Article.query.all()
     return render_template('article.html', articles=articles)
+
 
 @app.route('/articles')
 @login_required
 def articles_route():
     articles = Article.query.all()
     return render_template('adding_articles.html', articles=articles)
+
 
 @app.route('/backend')
 @login_required
@@ -114,6 +110,7 @@ def add_link():
         db.session.commit()
         flash('New entry was successfully posted!')
         return redirect(url_for('links_route'))
+
 
 @app.route('/add_article', methods=['POST'])
 @login_required
