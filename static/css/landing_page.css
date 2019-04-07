@@ -134,3 +134,139 @@ h2 {
 .input-group input {
   width: 100%;
 }
+
+
+.cover {
+  background-size: cover !important;
+}
+
+.dt {
+  display: table;
+}
+
+.dtc {
+  display: table-cell;
+}
+
+.athelas {
+  font-family: athelas, georgia, serif;
+}
+
+.i {
+  font-style: italic;
+}
+
+.fs-normal {
+  font-style: normal;
+}
+
+.fw1 {
+  font-weight: 100;
+}
+
+.vh-100 {
+  height: 100vh;
+}
+
+.tracked {
+  letter-spacing: .1em;
+}
+
+.lh-title {
+  line-height: 1.25;
+}
+
+.lh-copy {
+  line-height: 1.5;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.white-70 {
+  color: rgba(255, 255, 255, .7);
+}
+
+.white-60 {
+  color: rgba(255, 255, 255, .6);
+}
+
+.white {
+  color: #fff;
+}
+
+.bg-dark-gray {
+  background-color: #333;
+}
+
+.pv5 {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.ph0 {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.ph2 {
+  padding-left: .5rem;
+  padding-right: .5rem;
+}
+
+.mb2 {
+  margin-bottom: .5rem;
+}
+
+.mh0 {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.tc {
+  text-align: center;
+}
+
+.ttu {
+  text-transform: uppercase;
+}
+
+.f1 {
+  font-size: 3rem;
+}
+
+.f4 {
+  font-size: 1.25rem;
+}
+
+.f5 {
+  font-size: 1rem;
+}
+
+.f6 {
+  font-size: .875rem;
+}
+
+.measure {
+  max-width: 30em;
+}
+
+.measure-wide {
+  max-width: 34em;
+}
+
+.center {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.v-mid {
+  vertical-align: middle;
+}
+
+@media screen and (min-width: 60em) {
+  .f-headline-l {
+    font-size: 6rem;
+  }
+}

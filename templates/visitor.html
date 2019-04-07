@@ -1,10 +1,35 @@
 {% extends "template.html" %}
 {% block content %}
-    <h2>Welcome to Zophia.com!</h2>
-    <h3>Posts:</h3>
-    {% for p in posts %}
-        <strong>Title:</strong> {{ p.title }} <br/>
-        <strong>Post:</strong> {{ p.post }} <br/>
-        <br/>
-    {% endfor %}
+
+
+    <article class="athelas">
+        <div class="vh-100 dt w-100 tc bg-dark-gray white cover" style="background:url(/static/img/me.jpg) no-repeat center;">
+            <div class="dtc">
+                <h1 class="f3 f1-m f-headline-l black">Zophia Raleigh</h1>
+
+            </div>
+        </div>
+        <div class="center measure-wide f5 pv5 lh-copy ph2">
+            {% for p in posts %}
+
+
+
+                <h1 class="f1 lh-title">{{ p.title }}</h1>
+
+
+            <p> {{ p.post }}
+            </p>
+                <ul/>
+                {% endfor %}
+
+        </div>
+    </article>
+
+    {#    <h2>Welcome to Zophia.com!</h2>#}
+{#    <h3>Posts:</h3>#}
+{#    {% for p in posts %}#}
+{#        <strong>Title:</strong> {{ p.title }} <br/>#}
+{#        <strong>Post:</strong> {{ p.post }} <br/>#}
+{#        <br/>#}
+{#    {% endfor %}#}
 {% endblock %}
