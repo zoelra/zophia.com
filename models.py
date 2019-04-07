@@ -15,6 +15,7 @@ class Post(db.Model):
     def __repr__(self):
         return '<id {}>'.format(self.id)
 
+
 class Link(db.Model):
     __tablename__ = 'link'
 
@@ -25,6 +26,21 @@ class Link(db.Model):
     def __init__(self, title, link):
         self.title = title
         self.link = link
+
+    def __repr__(self):
+        return '<id {}>'.format(self.id)
+
+
+class Article(db.Model):
+    __tablename__ = 'article'
+
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String())
+    article = db.Column(db.String())
+
+    def __init__(self, title, article):
+        self.title = title
+        self.article = article
 
     def __repr__(self):
         return '<id {}>'.format(self.id)

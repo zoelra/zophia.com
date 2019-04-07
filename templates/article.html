@@ -1,0 +1,23 @@
+{% extends "template.html" %}
+{% block content %}
+
+
+        <div class="center measure-wide f5 pv1 lh-copy ph2">
+            <div class="center measure-wide">
+                <a href="/main"><h4>Home</h4></a>
+            </div>
+            {% for a in articles %}
+
+
+
+                <h1 class="f1 lh-title">{{ a.title }}</h1>
+
+
+                <p> {{ a.article }}
+                </p>
+            {% endfor %}
+
+        </div>
+
+
+{% endblock %}

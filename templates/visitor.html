@@ -3,13 +3,14 @@
 
 
     <article class="athelas">
-        <div class="vh-100 dt w-100 tc bg-dark-gray white cover" style="background:url(/static/img/me.jpg) no-repeat center;">
+        <div class="vh-100 dt w-100 tc bg-dark-gray white cover"
+             style="background:url(/static/img/me.jpg) no-repeat center;">
             <div class="dtc">
                 <h1 class="f3 f1-m f-headline-l black">Zophia Raleigh</h1>
 
             </div>
         </div>
-        <div class="center measure-wide f5 pv5 lh-copy ph2">
+        <div class="center measure-wide f5 pv1 lh-copy ph2">
             {% for p in posts %}
 
 
@@ -17,16 +18,21 @@
                 <h1 class="f1 lh-title">{{ p.title }}</h1>
 
 
-            <p> {{ p.post }}
-            </p>
-                {% endfor %}
+                <p> {{ p.post }}
+                </p>
+            {% endfor %}
 
         </div>
-        <div class="center measure-wide pv5 lh-copy">
+        <div class="center measure-wide f5 pv1 lh-copy ph2">
+            <a href="/visitor_articles"><h1 class="f1 lh-title">Articles</h1></a>
+        </div>
+
+
+        <div class="center measure-wide f5 pv1 lh-copy ph2">
             {% for l in links %}
 
                 <a href={{ l.link }}>{{ l.title }}</a>
-                {% endfor %}
+            {% endfor %}
 
         </div>
     </article>

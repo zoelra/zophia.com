@@ -10,7 +10,7 @@ app.config.from_object(os.environ['APP_SETTINGS'])
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
-from models import Post, Link
+from models import Post, Link, Article
 
 
 def login_required(test):
@@ -53,6 +53,17 @@ def main():
     return render_template('visitor.html', posts=posts)
 
 
+@app.route('/visitor_articles')
+def posts():
+    articles = Article.query.all()
+    return render_template('article.html', articles=articles)
+
+@app.route('/articles')
+@login_required
+def articles_route():
+    articles = Article.query.all()
+    return render_template('adding_articles.html', articles=articles)
+
 @app.route('/backend')
 @login_required
 def backend():
@@ -65,6 +76,7 @@ def backend():
 def links_route():
     links = Link.query.all()
     return render_template("adding_links.html", links=links)
+
 
 @app.route('/add', methods=['POST'])
 @login_required
@@ -84,6 +96,7 @@ def add():
         flash('New entry was successfully posted!')
         return redirect(url_for('backend'))
 
+
 @app.route('/add_link', methods=['POST'])
 @login_required
 def add_link():
@@ -91,7 +104,7 @@ def add_link():
     link = request.form['link']
     if not title or not link:
         flash("All fields are required. Please try again")
-        return redirect(url_for('backend'))
+        return redirect(url_for('add_link'))
     else:
         new_link = Link(
             title=title,
@@ -102,6 +115,24 @@ def add_link():
         flash('New entry was successfully posted!')
         return redirect(url_for('links_route'))
 
+@app.route('/add_article', methods=['POST'])
+@login_required
+def add_article():
+    title = request.form['title']
+    article = request.form['article']
+    if not title or not article:
+        flash("All fields are required. Please try again")
+        return redirect(url_for('add_article'))
+    else:
+        new_article = Article(
+            title=title,
+            article=article
+        )
+        db.session.add(new_article)
+        db.session.commit()
+        flash('New entry was successfully posted!')
+        return redirect(url_for('articles_route'))
+
 
 @app.route('/delete/<string:title>/')
 @login_required
@@ -109,6 +140,8 @@ def delete_entry(title):
     entry = Post.query.filter_by(title=title).first()
     if not entry:
         entry = Link.query.filter_by(title=title).first()
+    if not entry:
+        entry = Article.query.filter_by(title=title).first()
     db.session.delete(entry)
     db.session.commit()
     flash('The entry was deleted.')
