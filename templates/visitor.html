@@ -31,7 +31,8 @@
         <div class="center measure-wide f5 pv1 lh-copy ph2" style="padding-bottom: 100px">
             {% for l in links %}
 
-                <a href={{ l.link }}>{{ l.title }}</a>
+
+                <a href={{ l.link }}><i class="fab fa-{{ l.title }}"></i></a>
             {% endfor %}
 
         </div>
