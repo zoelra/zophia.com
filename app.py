@@ -10,7 +10,7 @@ app.config.from_object(os.environ['APP_SETTINGS'])
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
-from models import Post
+from models import Post, Link
 
 
 def login_required(test):
@@ -28,8 +28,8 @@ def login_required(test):
 @app.route('/', methods=["GET"])
 def landing_page():
     posts = Post.query.all()
-    print(posts)
-    return render_template('visitor.html', posts=posts)
+    links = Link.query.all()
+    return render_template('visitor.html', posts=posts, links=links)
 
 
 @app.route('/admin', methods=['GET', 'POST'])
@@ -60,6 +60,12 @@ def backend():
     return render_template('adding_posts.html', posts=posts)
 
 
+@app.route('/links')
+@login_required
+def links_route():
+    links = Link.query.all()
+    return render_template("adding_links.html", links=links)
+
 @app.route('/add', methods=['POST'])
 @login_required
 def add():
@@ -78,14 +84,34 @@ def add():
         flash('New entry was successfully posted!')
         return redirect(url_for('backend'))
 
+@app.route('/add_link', methods=['POST'])
+@login_required
+def add_link():
+    title = request.form['title']
+    link = request.form['link']
+    if not title or not link:
+        flash("All fields are required. Please try again")
+        return redirect(url_for('backend'))
+    else:
+        new_link = Link(
+            title=title,
+            link=link
+        )
+        db.session.add(new_link)
+        db.session.commit()
+        flash('New entry was successfully posted!')
+        return redirect(url_for('links_route'))
+
 
 @app.route('/delete/<string:title>/')
 @login_required
 def delete_entry(title):
-    post = Post.query.filter_by(title=title).first()
-    db.session.delete(post)
+    entry = Post.query.filter_by(title=title).first()
+    if not entry:
+        entry = Link.query.filter_by(title=title).first()
+    db.session.delete(entry)
     db.session.commit()
-    flash('The post was deleted.')
+    flash('The entry was deleted.')
     return redirect(url_for('backend'))
 
 

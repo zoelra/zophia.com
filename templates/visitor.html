@@ -22,13 +22,14 @@
                 {% endfor %}
 
         </div>
+        <div class="center measure-wide pv5 lh-copy">
+            {% for l in links %}
+
+                <a href={{ l.link }}>{{ l.title }}</a>
+                {% endfor %}
+
+        </div>
     </article>
 
-    {#    <h2>Welcome to Zophia.com!</h2>#}
-{#    <h3>Posts:</h3>#}
-{#    {% for p in posts %}#}
-{#        <strong>Title:</strong> {{ p.title }} <br/>#}
-{#        <strong>Post:</strong> {{ p.post }} <br/>#}
-{#        <br/>#}
-{#    {% endfor %}#}
+
 {% endblock %}

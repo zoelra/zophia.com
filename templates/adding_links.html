@@ -1,0 +1,24 @@
+{% extends "template.html" %}
+{% block content %}
+    <h2>Welcome to Zophia.com!</h2>
+    <p><a href="/logout">Logout</a></p>
+    <h3>Add a new link:</h3>
+    <form action="{{ url_for('add_link') }}" method="post" class="add">
+        <label><strong>Title:</strong></label>
+        <input name="title" type="text">
+        <p><label><strong>Link:</strong></label><br>
+            <textarea name="link" rows="5" cols="40"></textarea></p>
+        <input class="button" type="submit" value="Save">
+    </form>
+    <br/>
+    <br/>
+    <h3> Link:</h3>
+    {% for l in links %}
+        <strong>Title:</strong> {{ l.title }} <br/>
+        <strong>Link:</strong> {{ l.link }} <br/>
+        <td>
+            <a href="{{ url_for('delete_entry', title=l.title) }}">Delete</a>
+        </td>
+        <br/>
+    {% endfor %}
+{% endblock %}
